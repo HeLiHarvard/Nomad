@@ -22,14 +22,9 @@ def results():
   del attr_dict['csrf_token']
   form = AirportsForm(request.form)
   if request.method == 'POST' and form.validate():
-    print("form: ")
-    print(form)
-    print("dict: ")
-    print(attr_dict)
     airports = form.places.data
     dates = form.dates.data
     formatted_dates = [date[-4:]+'-'+date[:2]+'-'+date[3:5] for date in dates]
-    print(dates)
     prices = []
     results = []
     for i in range(len(airports)-1):
