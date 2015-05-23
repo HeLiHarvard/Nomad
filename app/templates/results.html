@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container home-search-box">
+    <div class="nomad-logo"></div>
+    <div class="home-search">
+      {% for i in range(prices|length) %} 
+        <p class="lead">Cheapest flight from {{ airports[i] }} to {{ airports[i+1] }} on {{ dates[i] }} costs {{ prices[i] }}</p>
+      {% endfor %}
+    </div>
+  </div>
+  <div id="map" style="height: 180px"></div>
+{% endblock %}
