@@ -1,0 +1,6 @@
+.DS_Store
+Notes.rtf
+Procfile
+__pycache__/
+config.py
+requirements.txt
