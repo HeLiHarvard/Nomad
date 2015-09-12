@@ -4,3 +4,4 @@ Procfile
 __pycache__/
 config.py
 requirements.txt
+chromedriver
