@@ -3,5 +3,10 @@ Notes.rtf
 Procfile
 __pycache__/
 config.py
+gfscrape.py
 requirements.txt
 chromedriver
+fares/
+journeys/
+flask/
+

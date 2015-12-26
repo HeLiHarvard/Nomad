@@ -1,17 +1,23 @@
 from app import db
 
+trips = db.Table('trips',
+    db.Column('start_id', db.Integer, db.ForeignKey('airport.id')),
+    db.Column('end_id', db.Integer, db.ForeignKey('airport.id'))
+)
+
 class Airport(db.Model):
-    name = db.Column(db.String(120), index=True, unique=True)
-    iata = db.Column(db.String(8), index=True, primary_key=True)
-
-    def __repr__(self):
-        return '<Airport: {0}>\n<IATA code: {1}>'.format(self.name, self.iata)
-
-class Trip(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    start = db.Column(db.String(8), db.ForeignKey('airport.iata'))
-    end = db.Column(db.String(8), db.ForeignKey('airport.iata'))
-    price = db.Column(db.Decimal(8,4))
+    iata = db.Column(db.String(8), index=True, unique=True)
+    name = db.Column(db.String(120), index=True, unique=True)
+    location = db.Column(db.String(120))
+
+    destinations = db.relationship('Airport',
+                          secondary=trips,
+                          primaryjoin=(trips.c.start_id == id),
+                          secondaryjoin=(trips.c.end_id == id),
+                          backref=db.backref('starts', lazy='dynamic'),
+                          lazy='dynamic')
 
     def __repr__(self):
-        return '<Price for trip from {0} to {1}: ${2}>'.format(self.start, self.end, self.price)
+        return '<Airport: {0}; IATA: {1}>'.format(self.name, self.iata)
+
