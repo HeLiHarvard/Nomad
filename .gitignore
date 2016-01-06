@@ -9,4 +9,5 @@ chromedriver
 fares/
 journeys/
 flask/
+data_scripts.py
 
